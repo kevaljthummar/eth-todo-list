@@ -113,6 +113,14 @@ App = {
     }
   },
 
+  createTask: async () => {
+    App.setLoading(true)
+    const content = $("#newtask").val()
+    let accounts = await web3.eth.getAccounts();
+    await App.todoList.createTask(content, {from: accounts[0]})
+    window.location.reload()
+  },
+
   setLoading: (boolean) => {
     App.loading = boolean
     const loader = $('#loader')
